@@ -1,32 +1,6 @@
-let dataMudah = [
-
-"Belajar mengetik cepat membutuhkan latihan setiap hari agar kemampuan tangan menjadi lebih baik",
-
-"Komputer membantu manusia menyelesaikan pekerjaan dengan cepat dan mudah",
-
-"Indonesia memiliki banyak budaya dan bahasa yang sangat beragam"
-
-];
-
-
-let dataSedang = [
-
-"Teknologi berkembang sangat cepat dan memberikan banyak manfaat bagi kehidupan manusia modern",
-
-"Disiplin dan kerja keras adalah kunci utama untuk mencapai tujuan yang diinginkan",
-
-"Latihan mengetik secara rutin dapat meningkatkan kecepatan dan ketelitian seseorang"
-
-];
-
-
-let dataSulit = [
-
-"Perkembangan teknologi digital memberikan perubahan besar terhadap cara manusia bekerja, belajar, dan berkomunikasi di seluruh dunia",
-
-"Kemampuan mengetik dengan cepat dan akurat menjadi salah satu keterampilan penting dalam dunia kerja yang menggunakan komputer",
-
-"Kesuksesan membutuhkan proses panjang yang terdiri dari usaha, kesabaran, evaluasi, dan kemauan untuk terus berkembang"
+let dataMudah = databaseTyping;
+let dataSedang = databaseTyping;
+let dataSulit = databaseTyping;
 
 ];
 
