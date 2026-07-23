@@ -438,4 +438,24 @@ font-size:20px;
 }
 
 
+}.kata{
+    margin:5px;
+    font-size:35px;
+    font-weight:bold;
+    display:inline-block;
+}
+
+
+.benar{
+    color:#22c55e;
+}
+
+
+.salah{
+    color:#ef4444;
+}
+
+
+.normal{
+    color:white;
 }
