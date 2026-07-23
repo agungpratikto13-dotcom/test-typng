@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
 
 <meta charset="UTF-8">
@@ -11,53 +12,178 @@
 
 </head>
 
+
 <body>
 
 
 <div class="container">
 
-<h1>⌨️ TES KECEPATAN MENGETIK</h1>
+
+<h1>
+⌨️ TES KECEPATAN MENGETIK INDONESIA
+</h1>
+
+
+<div class="menu">
+
+
+<input 
+type="text"
+id="nama"
+placeholder="Masukkan Nama Anda">
+
+
+<select id="level">
+
+<option value="mudah">
+Level Mudah
+</option>
+
+<option value="sedang">
+Level Sedang
+</option>
+
+<option value="sulit">
+Level Sulit
+</option>
+
+</select>
+
+
+</div>
+
+
 
 <div id="timer">
 60
 </div>
 
 
+
 <div id="text">
-Tekan tombol mulai untuk memulai tes mengetik bahasa Indonesia.
+
+Tekan mulai untuk memulai tes mengetik.
+
 </div>
 
 
-<textarea id="input" disabled></textarea>
+
+<textarea 
+id="input"
+placeholder="Mulai mengetik di sini..."
+disabled>
+</textarea>
 
 
-<button onclick="mulai()" id="start">
-Mulai Tes
+
+
+<button id="start" onclick="mulai()">
+
+🚀 MULAI TES
+
 </button>
+
+
+
+<button 
+id="ulang"
+onclick="ulang()"
+style="display:none">
+
+🔄 ULANGI
+
+</button>
+
+
 
 
 <div class="hasil">
 
-<p>⚡ Kecepatan : <span id="wpm">0</span> WPM</p>
 
-<p>🎯 Akurasi : <span id="akurasi">0</span>%</p>
+<div>
+⚡ Kecepatan:
+<span id="wpm">
+0
+</span>
+WPM
+</div>
 
-<p>⌨️ Karakter : <span id="karakter">0</span></p>
 
-<p>❌ Salah : <span id="salah">0</span></p>
+
+<div>
+🎯 Akurasi:
+<span id="akurasi">
+0
+</span>
+%
+</div>
+
+
+
+<div>
+⌨️ Karakter:
+<span id="karakter">
+0
+</span>
+</div>
+
+
+
+<div>
+❌ Salah:
+<span id="salah">
+0
+</span>
+</div>
+
+
+
+<div>
+🏆 High Score:
+<span id="highscore">
+0
+</span>
+WPM
+</div>
+
 
 </div>
+
+
+
+<div class="riwayat">
+
+<h3>
+📜 Hasil Terakhir
+</h3>
+
+
+<div id="hasilAkhir">
+
+Belum ada hasil
+
+</div>
+
+
+</div>
+
 
 
 <div class="credit">
+
 By Agung
+
 </div>
 
 
+
 </div>
+
 
 
 <script src="script.js"></script>
 
+
 </body>
+
 </html>
