@@ -167,10 +167,6 @@ salah++;
 
 }
 
-}
-
-
-
 
 let akurasi=0;
 
