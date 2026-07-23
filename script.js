@@ -1,12 +1,34 @@
 let kalimat = [
 
-"Belajar mengetik cepat membutuhkan latihan yang rutin dan konsisten setiap hari",
+"Belajar mengetik cepat membutuhkan latihan yang rutin dan konsisten. Kemampuan mengetik dapat membantu pekerjaan menjadi lebih mudah, terutama dalam dunia kerja yang menggunakan komputer setiap hari.",
 
-"Indonesia adalah negara yang memiliki banyak budaya bahasa dan keindahan alam",
+"Komputer telah menjadi bagian penting dalam kehidupan modern. Banyak pekerjaan dapat diselesaikan dengan lebih cepat menggunakan teknologi yang terus berkembang.",
 
-"Teknologi membantu manusia menyelesaikan pekerjaan dengan lebih cepat dan mudah",
+"Disiplin adalah salah satu kunci utama untuk mencapai keberhasilan. Dengan latihan yang teratur seseorang dapat meningkatkan kemampuan dan menjadi lebih baik dari sebelumnya.",
 
-"Kesuksesan datang dari usaha disiplin dan kemauan untuk terus belajar"
+"Internet memberikan banyak manfaat bagi manusia. Melalui internet kita dapat mencari informasi, belajar hal baru, berkomunikasi, dan mengembangkan berbagai keterampilan.",
+
+"Bahasa Indonesia merupakan bahasa persatuan yang digunakan oleh masyarakat dari berbagai daerah. Walaupun memiliki banyak perbedaan budaya, masyarakat Indonesia tetap dapat berkomunikasi dengan baik.",
+
+"Kemajuan teknologi membawa perubahan besar dalam kehidupan manusia. Banyak kegiatan yang dahulu membutuhkan waktu lama kini dapat dilakukan dengan lebih cepat dan praktis.",
+
+"Menjaga kesehatan tubuh sangat penting agar dapat menjalankan aktivitas sehari hari dengan baik. Pola makan yang seimbang, olahraga, dan istirahat cukup dapat membantu menjaga kondisi tubuh.",
+
+"Kesabaran dan ketekunan merupakan sikap yang diperlukan untuk mencapai tujuan. Setiap proses membutuhkan waktu dan usaha yang tidak sedikit.",
+
+"Belajar sesuatu yang baru mungkin terasa sulit pada awalnya. Namun dengan latihan yang terus menerus kemampuan seseorang akan meningkat secara perlahan.",
+
+"Lingkungan yang bersih dapat memberikan kenyamanan bagi semua orang. Menjaga kebersihan adalah tanggung jawab bersama yang harus dilakukan setiap hari.",
+
+"Kerja sama dalam sebuah tim dapat menghasilkan pekerjaan yang lebih baik. Setiap anggota memiliki peran penting untuk mencapai tujuan bersama.",
+
+"Penggunaan teknologi harus dilakukan dengan bijak. Teknologi dapat memberikan manfaat besar apabila digunakan untuk hal yang positif.",
+
+"Kecepatan mengetik bukan hanya tentang seberapa cepat tangan bergerak. Ketelitian dan kemampuan membaca juga sangat berpengaruh terhadap hasil akhir.",
+
+"Latihan mengetik secara rutin dapat meningkatkan kemampuan seseorang. Semakin sering berlatih maka semakin terbiasa tangan dan pikiran bekerja bersama.",
+
+"Masa depan yang baik dapat dipersiapkan mulai dari sekarang. Setiap usaha kecil yang dilakukan hari ini dapat memberikan hasil besar di kemudian hari."
 
 ];
 
