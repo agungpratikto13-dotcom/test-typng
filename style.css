@@ -24,6 +24,12 @@ url("wallpaper.jpg");
 
 background-size:cover;
 
+background-position:center;
+
+background-repeat:no-repeat;
+
+background-attachment:fixed;
+
 font-family:Segoe UI,Arial;
 
 color:white;
