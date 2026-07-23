@@ -2,10 +2,6 @@ let dataMudah = databaseTyping;
 let dataSedang = databaseTyping;
 let dataSulit = databaseTyping;
 
-];
-
-
-
 let teks="";
 
 let waktu=60;
@@ -152,18 +148,15 @@ let salah=0;
 
 for(let i=0;i<tulisan.length;i++){
 
+    if(tulisan[i]===teks[i]){
 
-if(tulisan[i]===teks[i]){
+        benar++;
 
+    }else{
 
-benar++;
+        salah++;
 
-
-}else{
-
-
-salah++;
-
+    }
 
 }
 
