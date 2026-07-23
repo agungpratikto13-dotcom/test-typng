@@ -2,7 +2,7 @@ let dataMudah = databaseTyping;
 let dataSedang = databaseTyping;
 let dataSulit = databaseTyping;
 
-let teks="";
+let teks = "";
 
 let waktu=60;
 
