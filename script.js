@@ -1,36 +1,35 @@
-let kalimat = [
+let dataMudah = [
 
-"Belajar mengetik cepat membutuhkan latihan yang rutin dan konsisten. Kemampuan mengetik dapat membantu pekerjaan menjadi lebih mudah, terutama dalam dunia kerja yang menggunakan komputer setiap hari.",
+"Belajar mengetik cepat membutuhkan latihan setiap hari agar kemampuan tangan menjadi lebih baik",
 
-"Komputer telah menjadi bagian penting dalam kehidupan modern. Banyak pekerjaan dapat diselesaikan dengan lebih cepat menggunakan teknologi yang terus berkembang.",
+"Komputer membantu manusia menyelesaikan pekerjaan dengan cepat dan mudah",
 
-"Disiplin adalah salah satu kunci utama untuk mencapai keberhasilan. Dengan latihan yang teratur seseorang dapat meningkatkan kemampuan dan menjadi lebih baik dari sebelumnya.",
-
-"Internet memberikan banyak manfaat bagi manusia. Melalui internet kita dapat mencari informasi, belajar hal baru, berkomunikasi, dan mengembangkan berbagai keterampilan.",
-
-"Bahasa Indonesia merupakan bahasa persatuan yang digunakan oleh masyarakat dari berbagai daerah. Walaupun memiliki banyak perbedaan budaya, masyarakat Indonesia tetap dapat berkomunikasi dengan baik.",
-
-"Kemajuan teknologi membawa perubahan besar dalam kehidupan manusia. Banyak kegiatan yang dahulu membutuhkan waktu lama kini dapat dilakukan dengan lebih cepat dan praktis.",
-
-"Menjaga kesehatan tubuh sangat penting agar dapat menjalankan aktivitas sehari hari dengan baik. Pola makan yang seimbang, olahraga, dan istirahat cukup dapat membantu menjaga kondisi tubuh.",
-
-"Kesabaran dan ketekunan merupakan sikap yang diperlukan untuk mencapai tujuan. Setiap proses membutuhkan waktu dan usaha yang tidak sedikit.",
-
-"Belajar sesuatu yang baru mungkin terasa sulit pada awalnya. Namun dengan latihan yang terus menerus kemampuan seseorang akan meningkat secara perlahan.",
-
-"Lingkungan yang bersih dapat memberikan kenyamanan bagi semua orang. Menjaga kebersihan adalah tanggung jawab bersama yang harus dilakukan setiap hari.",
-
-"Kerja sama dalam sebuah tim dapat menghasilkan pekerjaan yang lebih baik. Setiap anggota memiliki peran penting untuk mencapai tujuan bersama.",
-
-"Penggunaan teknologi harus dilakukan dengan bijak. Teknologi dapat memberikan manfaat besar apabila digunakan untuk hal yang positif.",
-
-"Kecepatan mengetik bukan hanya tentang seberapa cepat tangan bergerak. Ketelitian dan kemampuan membaca juga sangat berpengaruh terhadap hasil akhir.",
-
-"Latihan mengetik secara rutin dapat meningkatkan kemampuan seseorang. Semakin sering berlatih maka semakin terbiasa tangan dan pikiran bekerja bersama.",
-
-"Masa depan yang baik dapat dipersiapkan mulai dari sekarang. Setiap usaha kecil yang dilakukan hari ini dapat memberikan hasil besar di kemudian hari."
+"Indonesia memiliki banyak budaya dan bahasa yang sangat beragam"
 
 ];
+
+
+let dataSedang = [
+
+"Teknologi berkembang sangat cepat dan memberikan banyak manfaat bagi kehidupan manusia modern",
+
+"Disiplin dan kerja keras adalah kunci utama untuk mencapai tujuan yang diinginkan",
+
+"Latihan mengetik secara rutin dapat meningkatkan kecepatan dan ketelitian seseorang"
+
+];
+
+
+let dataSulit = [
+
+"Perkembangan teknologi digital memberikan perubahan besar terhadap cara manusia bekerja, belajar, dan berkomunikasi di seluruh dunia",
+
+"Kemampuan mengetik dengan cepat dan akurat menjadi salah satu keterampilan penting dalam dunia kerja yang menggunakan komputer",
+
+"Kesuksesan membutuhkan proses panjang yang terdiri dari usaha, kesabaran, evaluasi, dan kemauan untuk terus berkembang"
+
+];
+
 
 
 let teks="";
@@ -39,41 +38,97 @@ let waktu=60;
 
 let timer;
 
-let mulaiStatus=false;
+let aktif=false;
+
+let mulaiWaktu;
 
 
-const textBox=document.getElementById("text");
-const input=document.getElementById("input");
+
+let input=document.getElementById("input");
+
+let text=document.getElementById("text");
+
+
+
+
+
+function pilihTeks(){
+
+
+let level=document.getElementById("level").value;
+
+
+let sumber;
+
+
+if(level=="mudah"){
+
+sumber=dataMudah;
+
+}
+
+else if(level=="sedang"){
+
+sumber=dataSedang;
+
+}
+
+else{
+
+sumber=dataSulit;
+
+}
+
+
+
+let index=Math.floor(
+Math.random()*sumber.length
+);
+
+
+
+teks=sumber[index];
+
+
+
+text.innerHTML=teks;
+
+
+}
+
 
 
 
 function mulai(){
 
-if(mulaiStatus) return;
+
+if(aktif)return;
 
 
-mulaiStatus=true;
+aktif=true;
 
 
-teks=
-kalimat[
-Math.floor(Math.random()*kalimat.length)
-];
-
-
-textBox.innerHTML=teks;
+pilihTeks();
 
 
 input.value="";
 
+
 input.disabled=false;
+
 
 input.focus();
 
 
+
 waktu=60;
 
+
 document.getElementById("timer").innerHTML=waktu;
+
+
+
+mulaiWaktu=Date.now();
 
 
 
@@ -82,15 +137,19 @@ timer=setInterval(()=>{
 
 waktu--;
 
+
 document.getElementById("timer").innerHTML=waktu;
 
 
 
 if(waktu<=0){
 
+
 selesai();
 
+
 }
+
 
 
 },1000);
@@ -101,10 +160,14 @@ selesai();
 
 
 
-input.addEventListener("input",()=>{
+
+
+
+input.addEventListener("input",function(){
 
 
 let tulisan=input.value;
+
 
 
 let benar=0;
@@ -118,54 +181,98 @@ for(let i=0;i<tulisan.length;i++){
 
 if(tulisan[i]===teks[i]){
 
+
 benar++;
+
 
 }else{
 
+
 salah++;
 
+
 }
 
 }
+
 
 
 
 let akurasi=0;
 
 
+
 if(tulisan.length>0){
 
-akurasi=
-Math.round(
+
+akurasi=Math.round(
+
 (benar/tulisan.length)*100
+
 );
+
 
 }
 
 
 
-let wpm=
-Math.round(
-(tulisan.length/5)
-/((60-waktu)/60)
+
+let menit=
+
+(60-waktu)/60;
+
+
+
+let wpm=Math.round(
+
+(tulisan.length/5)/menit
+
 );
 
 
 
-document.getElementById("wpm").innerHTML=
-isFinite(wpm)?wpm:0;
+if(!isFinite(wpm)){
+
+wpm=0;
+
+}
 
 
-document.getElementById("akurasi").innerHTML=
-akurasi;
 
 
-document.getElementById("karakter").innerHTML=
-tulisan.length;
+document.getElementById("wpm").innerHTML=wpm;
 
 
-document.getElementById("salah").innerHTML=
-salah;
+document.getElementById("akurasi").innerHTML=akurasi;
+
+
+document.getElementById("karakter").innerHTML=tulisan.length;
+
+
+document.getElementById("salah").innerHTML=salah;
+
+
+
+
+// otomatis ganti paragraf
+
+
+if(tulisan===teks){
+
+
+setTimeout(()=>{
+
+
+pilihTeks();
+
+
+input.value="";
+
+
+},500);
+
+
+}
 
 
 
@@ -173,19 +280,96 @@ salah;
 
 
 
+
+
+
 function selesai(){
 
+
 clearInterval(timer);
+
+
+aktif=false;
 
 
 input.disabled=true;
 
 
-mulaiStatus=false;
+
+let skor=
+
+Number(
+document.getElementById("wpm").innerHTML
+);
 
 
-document.getElementById("timer").innerHTML=
-"SELESAI";
+
+let high=
+
+localStorage.getItem("highscore")
+||0;
+
+
+
+if(skor>high){
+
+
+localStorage.setItem(
+"highscore",
+skor
+);
+
+
+high=skor;
+
+
+}
+
+
+
+document.getElementById("highscore").innerHTML=high;
+
+
+
+document.getElementById("hasilAkhir").innerHTML=
+
+`
+Kecepatan : ${skor} WPM <br>
+Akurasi : ${document.getElementById("akurasi").innerHTML}% <br>
+Karakter : ${document.getElementById("karakter").innerHTML}
+`;
+
+
+
+document.getElementById("ulang").style.display="inline-block";
+
+
+}
+
+
+
+
+
+
+
+function ulang(){
+
+
+location.reload();
+
+
+}
+
+
+
+
+window.onload=function(){
+
+
+document.getElementById("highscore").innerHTML=
+
+localStorage.getItem("highscore")
+||0;
 
 
 }
