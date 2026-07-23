@@ -1,17 +1,12 @@
-let dataMudah = databaseTyping;
-let dataSedang = databaseTyping;
-let dataSulit = databaseTyping;
+let kataAktif = [];
 
-let teks = "";
+let indexKata = 0;
+
+let aktif=false;
 
 let waktu=60;
 
 let timer;
-
-let aktif=false;
-
-let mulaiWaktu;
-
 
 
 let input=document.getElementById("input");
@@ -20,51 +15,69 @@ let text=document.getElementById("text");
 
 
 
+function buatKata(){
 
 
-function pilihTeks(){
+kataAktif=[];
 
 
-let level=document.getElementById("level").value;
+for(let i=0;i<20;i++){
 
-
-let sumber;
-
-
-if(level=="mudah"){
-
-sumber=dataMudah;
-
-}
-
-else if(level=="sedang"){
-
-sumber=dataSedang;
-
-}
-
-else{
-
-sumber=dataSulit;
-
-}
-
-
-
-let index=Math.floor(
-Math.random()*sumber.length
+let acak=Math.floor(
+Math.random()*databaseTyping.length
 );
 
 
+kataAktif.push(
+databaseTyping[acak]
+);
 
-teks=sumber[index];
+}
+
+
+indexKata=0;
+
+
+tampilkanKata();
+
+}
 
 
 
-text.innerHTML=teks;
+
+
+function tampilkanKata(){
+
+
+text.innerHTML="";
+
+
+kataAktif.forEach((kata,index)=>{
+
+
+let span=document.createElement("span");
+
+
+span.innerHTML=kata+" ";
+
+span.className="kata normal";
+
+
+if(index<indexKata){
+
+span.className="kata benar";
+
+}
+
+
+text.appendChild(span);
+
+
+});
 
 
 }
+
 
 
 
@@ -78,16 +91,15 @@ if(aktif)return;
 aktif=true;
 
 
-pilihTeks();
-
+input.disabled=false;
 
 input.value="";
 
-
-input.disabled=false;
-
-
 input.focus();
+
+
+
+buatKata();
 
 
 
@@ -95,10 +107,6 @@ waktu=60;
 
 
 document.getElementById("timer").innerHTML=waktu;
-
-
-
-mulaiWaktu=Date.now();
 
 
 
@@ -111,15 +119,11 @@ waktu--;
 document.getElementById("timer").innerHTML=waktu;
 
 
-
 if(waktu<=0){
-
 
 selesai();
 
-
 }
-
 
 
 },1000);
@@ -131,115 +135,97 @@ selesai();
 
 
 
+input.addEventListener("input",()=>{
 
 
-input.addEventListener("input",function(){
+let ketik=input.value.trim();
 
 
-let tulisan=input.value;
-
-
-
-let benar=0;
-
-let salah=0;
+let target=kataAktif[indexKata];
 
 
 
-for(let i=0;i<tulisan.length;i++){
-
-    if(tulisan[i]===teks[i]){
-
-        benar++;
-
-    }else{
-
-        salah++;
-
-    }
-
-}
-
-
-let akurasi=0;
+if(ketik.length===target.length){
 
 
 
-if(tulisan.length>0){
+if(ketik===target){
 
 
-akurasi=Math.round(
-
-(benar/tulisan.length)*100
-
-);
-
-
-}
-
-
-
-
-let menit=
-
-(60-waktu)/60;
-
-
-
-let wpm=Math.round(
-
-(tulisan.length/5)/menit
-
-);
-
-
-
-if(!isFinite(wpm)){
-
-wpm=0;
-
-}
-
-
-
-
-document.getElementById("wpm").innerHTML=wpm;
-
-
-document.getElementById("akurasi").innerHTML=akurasi;
-
-
-document.getElementById("karakter").innerHTML=tulisan.length;
-
-
-document.getElementById("salah").innerHTML=salah;
-
-
-
-
-// otomatis ganti paragraf
-
-
-if(tulisan===teks){
-
-
-setTimeout(()=>{
-
-
-pilihTeks();
+indexKata++;
 
 
 input.value="";
 
 
-},500);
+
+if(indexKata>=kataAktif.length){
+
+
+buatKata();
+
+
+}
+
+
+}
 
 
 }
 
 
 
+cekWarna(ketik);
+
+
+
 });
+
+
+
+
+
+
+function cekWarna(ketik){
+
+
+let semua=document.querySelectorAll(".kata");
+
+
+semua.forEach((el,i)=>{
+
+
+if(i<indexKata){
+
+
+el.className="kata benar";
+
+
+}
+
+else if(i===indexKata){
+
+
+if(ketik.length>0 && !kataAktif[i].startsWith(ketik)){
+
+
+el.className="kata salah";
+
+
+}else{
+
+
+el.className="kata normal";
+
+
+}
+
+}
+
+});
+
+
+}
 
 
 
@@ -256,83 +242,6 @@ aktif=false;
 
 
 input.disabled=true;
-
-
-
-let skor=
-
-Number(
-document.getElementById("wpm").innerHTML
-);
-
-
-
-let high=
-
-localStorage.getItem("highscore")
-||0;
-
-
-
-if(skor>high){
-
-
-localStorage.setItem(
-"highscore",
-skor
-);
-
-
-high=skor;
-
-
-}
-
-
-
-document.getElementById("highscore").innerHTML=high;
-
-
-
-document.getElementById("hasilAkhir").innerHTML=
-
-`
-Kecepatan : ${skor} WPM <br>
-Akurasi : ${document.getElementById("akurasi").innerHTML}% <br>
-Karakter : ${document.getElementById("karakter").innerHTML}
-`;
-
-
-
-document.getElementById("ulang").style.display="inline-block";
-
-
-}
-
-
-
-
-
-
-
-function ulang(){
-
-
-location.reload();
-
-
-}
-
-
-
-
-window.onload=function(){
-
-
-document.getElementById("highscore").innerHTML=
-
-localStorage.getItem("highscore")
-||0;
 
 
 }
