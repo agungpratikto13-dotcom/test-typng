@@ -1,25 +1,26 @@
-
-let jumlahBenar=0;
-let jumlahSalah=0;
-let jumlahKarakter=0;
-
-let namaPemain="";
-let waktuMulai;
-
 let kataAktif = [];
 
 let indexKata = 0;
 
-let aktif=false;
+let aktif = false;
 
-let waktu=60;
+let waktu = 60;
 
 let timer;
 
 
-let input=document.getElementById("input");
+let input = document.getElementById("input");
 
-let text=document.getElementById("text");
+let text = document.getElementById("text");
+
+
+let jumlahBenar = 0;
+let jumlahSalah = 0;
+let jumlahKarakter = 0;
+
+let namaPemain = "";
+
+let waktuMulai;
 
 
 
@@ -36,9 +37,8 @@ Math.random()*databaseTyping.length
 );
 
 
-kataAktif.push(
-databaseTyping[acak]
-);
+kataAktif.push(databaseTyping[acak]);
+
 
 }
 
@@ -48,8 +48,8 @@ indexKata=0;
 
 tampilkanKata();
 
-}
 
+}
 
 
 
@@ -67,6 +67,7 @@ let span=document.createElement("span");
 
 
 span.innerHTML=kata+" ";
+
 
 span.className="kata normal";
 
@@ -96,7 +97,9 @@ function mulai(){
 if(aktif)return;
 
 
+
 namaPemain=document.getElementById("nama").value;
+
 
 
 if(namaPemain==""){
@@ -113,11 +116,22 @@ aktif=true;
 
 
 jumlahBenar=0;
+
 jumlahSalah=0;
+
 jumlahKarakter=0;
 
 
+document.getElementById("benar").innerHTML=0;
+
+document.getElementById("salah").innerHTML=0;
+
+document.getElementById("kpm").innerHTML=0;
+
+
+
 waktuMulai=Date.now();
+
 
 
 input.disabled=false;
@@ -154,6 +168,7 @@ document.getElementById("timer").innerHTML=waktu;
 hitungKPM();
 
 
+
 if(waktu<=0){
 
 selesai();
@@ -170,6 +185,7 @@ selesai();
 
 
 
+
 input.addEventListener("input",()=>{
 
 
@@ -177,7 +193,6 @@ let ketik=input.value.trim();
 
 
 let target=kataAktif[indexKata];
-
 
 
 jumlahKarakter++;
@@ -203,15 +218,11 @@ indexKata++;
 input.value="";
 
 
-
 if(indexKata>=kataAktif.length){
-
 
 buatKata();
 
-
 }
-
 
 
 }else{
@@ -233,8 +244,8 @@ document.getElementById("salah").innerHTML=jumlahSalah;
 cekWarna(ketik);
 
 
-
 });
+
 
 
 
@@ -251,7 +262,6 @@ semua.forEach((el,i)=>{
 
 if(i<indexKata){
 
-
 el.className="kata benar";
 
 
@@ -260,7 +270,10 @@ el.className="kata benar";
 else if(i===indexKata){
 
 
-if(ketik.length>0 && !kataAktif[i].startsWith(ketik)){
+if(
+ketik.length>0 &&
+!kataAktif[i].startsWith(ketik)
+){
 
 
 el.className="kata salah";
@@ -274,12 +287,20 @@ el.className="kata normal";
 
 }
 
+
 }
+
 
 });
 
 
 }
+
+
+
+
+
+
 
 function hitungKPM(){
 
@@ -288,14 +309,13 @@ let menit=
 (Date.now()-waktuMulai)/60000;
 
 
-
 let kpm=Math.floor(
 (jumlahKarakter/5)/menit
 );
 
 
 
-if(kpm<0){
+if(!isFinite(kpm)){
 
 kpm=0;
 
@@ -314,6 +334,8 @@ return kpm;
 
 
 
+
+
 function selesai(){
 
 
@@ -326,15 +348,50 @@ aktif=false;
 input.disabled=true;
 
 
-let hasilKPM=hitungKPM();
+
+let skor=hitungKPM();
 
 
 
 simpanScore(
 namaPemain,
-hasilKPM
+skor
 );
 
 
 
+document.getElementById("hasil").innerHTML=
+
+`
+Nama : ${namaPemain}<br>
+KPM : ${skor}<br>
+Benar : ${jumlahBenar}<br>
+Salah : ${jumlahSalah}
+`;
+
+
+
+document.getElementById("popup").style.display="flex";
+
+
 }
+
+
+
+
+
+document.getElementById("start").onclick=mulai;
+
+
+document.getElementById("ulang").onclick=function(){
+
+location.reload();
+
+};
+
+
+document.getElementById("closePopup").onclick=function(){
+
+document.getElementById("popup").style.display="none";
+
+};
