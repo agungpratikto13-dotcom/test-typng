@@ -56,34 +56,23 @@ tampilkanKata();
 
 function tampilkanKata(){
 
+    text.innerHTML="";
 
-text.innerHTML="";
+    kataAktif.forEach((kata,index)=>{
 
+        let span=document.createElement("span");
 
-kataAktif.forEach((kata,index)=>{
+        span.innerHTML=kata+" ";
 
+        span.className="kata";
 
-let span=document.createElement("span");
+        if(index===0){
+            span.classList.add("aktif");
+        }
 
+        text.appendChild(span);
 
-span.innerHTML=kata+" ";
-
-
-span.className="kata normal";
-
-
-if(index<indexKata){
-
-span.className="kata benar";
-
-}
-
-
-text.appendChild(span);
-
-
-});
-
+    });
 
 }
 
@@ -188,56 +177,44 @@ selesai();
 
 input.addEventListener("input",()=>{
 
+    let ketik=input.value.trim();
 
-let ketik=input.value.trim();
+    let target=kataAktif[indexKata];
 
+    jumlahKarakter++;
 
-let target=kataAktif[indexKata];
+    cekWarna(ketik);
 
+    if(ketik===target){
 
-jumlahKarakter++;
+        jumlahBenar++;
 
+        document.getElementById("benar").innerHTML=jumlahBenar;
 
+        indexKata++;
 
-if(ketik.length===target.length){
+        input.value="";
 
+        if(indexKata>=kataAktif.length){
 
+            buatKata();
 
-if(ketik===target){
+        }else{
 
+            cekWarna("");
 
-jumlahBenar++;
+        }
 
+    }
+    else if(ketik.length>=target.length){
 
-document.getElementById("benar").innerHTML=jumlahBenar;
+        jumlahSalah++;
 
+        document.getElementById("salah").innerHTML=jumlahSalah;
 
-indexKata++;
+    }
 
-
-input.value="";
-
-
-if(indexKata>=kataAktif.length){
-
-buatKata();
-
-}
-
-
-}else{
-
-
-jumlahSalah++;
-
-
-document.getElementById("salah").innerHTML=jumlahSalah;
-
-
-}
-
-
-}
+});
 
 
 
@@ -253,46 +230,38 @@ cekWarna(ketik);
 
 function cekWarna(ketik){
 
+    let semua=document.querySelectorAll(".kata");
 
-let semua=document.querySelectorAll(".kata");
+    semua.forEach((el,i)=>{
 
+        el.classList.remove("benar","salah","aktif");
 
-semua.forEach((el,i)=>{
+        if(i<indexKata){
 
+            el.classList.add("benar");
 
-if(i<indexKata){
+        }
+        else if(i===indexKata){
 
-el.className="kata benar";
+            el.classList.add("aktif");
 
+            if(ketik.length>0){
 
-}
+                if(kataAktif[i].startsWith(ketik)){
 
-else if(i===indexKata){
+                    el.classList.add("benar");
 
+                }else{
 
-if(
-ketik.length>0 &&
-!kataAktif[i].startsWith(ketik)
-){
+                    el.classList.add("salah");
 
+                }
 
-el.className="kata salah";
+            }
 
+        }
 
-}else{
-
-
-el.className="kata normal";
-
-
-}
-
-
-}
-
-
-});
-
+    });
 
 }
 
