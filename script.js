@@ -206,7 +206,6 @@ input.addEventListener("input",()=>{
 
 }
 
-    }
     else if(ketik.length>=target.length){
 
         jumlahSalah++;
