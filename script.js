@@ -221,9 +221,6 @@ input.addEventListener("input",()=>{
 cekWarna(ketik);
 
 
-});
-
-
 
 
 
