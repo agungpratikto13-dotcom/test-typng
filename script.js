@@ -175,46 +175,39 @@ selesai();
 
 
 
-input.addEventListener("input",()=>{
+input.addEventListener("input", () => {
 
-    let ketik=input.value.trim();
-
-    let target=kataAktif[indexKata];
+    let ketik = input.value.trim();
+    let target = kataAktif[indexKata];
 
     jumlahKarakter++;
 
     cekWarna(ketik);
 
-    if(ketik===target){
+    if (ketik === target) {
 
         jumlahBenar++;
-
-        document.getElementById("benar").innerHTML=jumlahBenar;
+        document.getElementById("benar").innerHTML = jumlahBenar;
 
         indexKata++;
+        input.value = "";
 
-        input.value="";
+        if (indexKata >= kataAktif.length) {
+            buatKata();
+        } else {
+            tampilkanKata();
+            cekWarna("");
+        }
 
-     if(indexKata>=kataAktif.length){
-
-    buatKata();
-
-}else{
-
-    tampilkanKata();
-    cekWarna("");
-
-
-
-    else if(ketik.length>=target.length){
+    } else if (ketik.length >= target.length) {
 
         jumlahSalah++;
-
-        document.getElementById("salah").innerHTML=jumlahSalah;
+        document.getElementById("salah").innerHTML = jumlahSalah;
 
     }
 
 });
+
 
 function cekWarna(ketik){
 
