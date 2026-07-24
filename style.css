@@ -163,29 +163,22 @@ body{
 /* ========================= */
 /* warna kata */
 
-.word{
-
+.kata{
     color:#9ca3af;
-
 }
 
-.word.active{
-
+.kata.aktif{
     color:white;
-
 }
 
-.word.correct{
-
+.kata.benar{
     color:#22c55e;
-
 }
 
-.word.wrong{
-
+.kata.salah{
     color:#ef4444;
-
 }
+
 
 /* ========================= */
 
