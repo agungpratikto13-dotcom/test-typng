@@ -12,175 +12,247 @@
 
 </head>
 
-
 <body>
 
+<!-- Background Video -->
+<video autoplay muted loop id="bgVideo">
+    <source src="wallpaper.mp4" type="video/mp4">
+</video>
 
-<div class="container">
+<div class="overlay"></div>
 
+<div class="wrapper">
 
-<h1>
-⌨️ TES KECEPATAN MENGETIK INDONESIA
-</h1>
+    <!-- ========================= -->
+    <!-- PANEL KIRI -->
+    <!-- ========================= -->
 
+    <div class="main">
 
-<div class="menu">
+        <h1>⌨️ TES KECEPATAN MENGETIK</h1>
 
+        <div class="topMenu">
 
-<input 
-type="text"
-id="nama"
-placeholder="Masukkan Nama Anda">
+            <input
+                id="nama"
+                type="text"
+                placeholder="Masukkan Nama">
 
+            <select id="level">
 
-<select id="level">
+                <option value="mudah">🟢 Mudah</option>
+                <option value="sedang">🟡 Sedang</option>
+                <option value="sulit">🔴 Sulit</option>
 
-<option value="mudah">
-Level Mudah
-</option>
+            </select>
 
-<option value="sedang">
-Level Sedang
-</option>
+            <select id="durasi">
 
-<option value="sulit">
-Level Sulit
-</option>
+                <option value="30">30 Detik</option>
+                <option value="60" selected>60 Detik</option>
+                <option value="120">120 Detik</option>
 
-</select>
+            </select>
 
+        </div>
+
+        <div id="timer">
+
+            60
+
+        </div>
+
+        <div id="text">
+
+            Tekan tombol mulai.
+
+        </div>
+
+        <textarea
+            id="input"
+            placeholder="Mulai mengetik..."
+            disabled>
+        </textarea>
+
+        <div class="buttonBox">
+
+            <button id="start">
+
+                🚀 MULAI
+
+            </button>
+
+            <button id="ulang">
+
+                🔄 ULANG
+
+            </button>
+
+        </div>
+
+        <!-- ================= -->
+
+        <div class="statistik">
+
+            <div class="card">
+
+                ⚡ KPM
+
+                <span id="kpm">
+
+                    0
+
+                </span>
+
+            </div>
+
+            <div class="card">
+
+                🌍 WPM
+
+                <span id="wpm">
+
+                    0
+
+                </span>
+
+            </div>
+
+            <div class="card">
+
+                🎯 Akurasi
+
+                <span id="akurasi">
+
+                    0%
+
+                </span>
+
+            </div>
+
+            <div class="card">
+
+                ✅ Benar
+
+                <span id="benar">
+
+                    0
+
+                </span>
+
+            </div>
+
+            <div class="card">
+
+                ❌ Salah
+
+                <span id="salah">
+
+                    0
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- PANEL KANAN -->
+    <!-- ========================= -->
+
+    <div class="sidebar">
+
+        <h2>
+
+            🏆 LEADERBOARD
+
+        </h2>
+
+        <div id="leaderboard">
+
+        </div>
+
+        <hr>
+
+        <h2>
+
+            ⭐ HIGH SCORE
+
+        </h2>
+
+        <div id="highscore">
+
+            Belum ada data
+
+        </div>
+
+        <hr>
+
+        <h2>
+
+            👑 RANK
+
+        </h2>
+
+        <div id="rank">
+
+            Beginner
+
+        </div>
+
+        <hr>
+
+        <h2>
+
+            📜 RIWAYAT
+
+        </h2>
+
+        <div id="history">
+
+        </div>
+
+        <button id="resetRanking">
+
+            🗑 Reset Ranking
+
+        </button>
+
+    </div>
 
 </div>
 
+<!-- Popup -->
 
+<div id="popup">
 
-<div id="timer">
-60
-</div>
+    <div class="popupContent">
 
+        <h2>
 
+            🏆 HASIL
 
-<div id="text"></div>
+        </h2>
 
+        <div id="hasil">
 
+        </div>
 
-<textarea 
-id="input"
-placeholder="Mulai mengetik di sini..."
-disabled>
-</textarea>
+        <button id="closePopup">
 
+            Tutup
 
+        </button>
 
-
-<button id="start" onclick="mulai()">
-
-🚀 MULAI TES
-
-</button>
-
-
-
-<button 
-id="ulang"
-onclick="ulang()"
-style="display:none">
-
-🔄 ULANGI
-
-</button>
-
-
-
-
-<div class="hasil">
-
-
-<div>
-⚡ Kecepatan:
-<span id="wpm">
-0
-</span>
-WPM
-</div>
-
-
-
-<div>
-🎯 Akurasi:
-<span id="akurasi">
-0
-</span>
-%
-</div>
-
-
-
-<div>
-⌨️ Karakter:
-<span id="karakter">
-0
-</span>
-</div>
-
-
-
-<div>
-❌ Salah:
-<span id="salah">
-0
-</span>
-</div>
-
-
-
-<div>
-🏆 High Score:
-<span id="highscore">
-0
-</span>
-WPM
-</div>
-
+    </div>
 
 </div>
-
-
-
-<div class="riwayat">
-
-<h3>
-📜 Hasil Terakhir
-</h3>
-
-
-<div id="hasilAkhir">
-
-Belum ada hasil
-
-</div>
-
-
-</div>
-
-
-
-<div class="credit">
-
-By Agung
-
-</div>
-
-
-
-</div>
-
-
 
 <script src="kata.js"></script>
+<script src="leaderboard.js"></script>
 <script src="script.js"></script>
 
-
 </body>
-
 </html>
