@@ -66,7 +66,7 @@ function tampilkanKata(){
 
         span.className="kata";
 
-        if(index===0){
+        if(index===indexKata){
             span.classList.add("aktif");
         }
 
@@ -195,15 +195,16 @@ input.addEventListener("input",()=>{
 
         input.value="";
 
-        if(indexKata>=kataAktif.length){
+     if(indexKata>=kataAktif.length){
 
-            buatKata();
+    buatKata();
 
-        }else{
+}else{
 
-            cekWarna("");
+    tampilkanKata();
+    cekWarna("");
 
-        }
+}
 
     }
     else if(ketik.length>=target.length){
@@ -215,15 +216,6 @@ input.addEventListener("input",()=>{
     }
 
 });
-
-
-
-cekWarna(ketik);
-
-
-
-
-
 
 function cekWarna(ketik){
 
