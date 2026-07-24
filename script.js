@@ -204,7 +204,7 @@ input.addEventListener("input",()=>{
     tampilkanKata();
     cekWarna("");
 
-}
+
 
     else if(ketik.length>=target.length){
 
