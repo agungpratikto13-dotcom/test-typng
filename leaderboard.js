@@ -22,7 +22,7 @@ dataScore=dataScore.slice(0,10);
 
 
 
-localStorage.setItem(
+Firebase Firestore.setItem(
 "score",
 JSON.stringify(dataScore)
 );
