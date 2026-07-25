@@ -1,3 +1,5 @@
+import { simpanScore } from './leaderboard.js';
+
 let kataAktif = [];
 
 let indexKata = 0;
@@ -286,7 +288,7 @@ return kpm;
 
 
 
-function selesai(){
+async function selesai(){
 
 
 clearInterval(timer);
@@ -303,7 +305,7 @@ let skor=hitungKPM();
 
 
 
-simpanScore(
+await simpanScore(
 namaPemain,
 skor
 );
