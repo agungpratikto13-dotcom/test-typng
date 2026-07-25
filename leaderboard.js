@@ -1,72 +1,89 @@
-let dataScore =
-JSON.parse(localStorage.getItem("score")) || [];
+import { db } from './firebase.js';
 
+import {
+  doc,
+  getDoc,
+  setDoc,
+  onSnapshot,
+  collection,
+  query,
+  orderBy,
+  limit
+} from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js';
 
-function simpanScore(nama,kpm){
+const leaderboardRef = collection(db, 'leaderboard');
 
+// Tampilkan leaderboard realtime
+export function tampilLeaderboard() {
+  const box = document.getElementById('leaderboard');
 
-dataScore.push({
+  const q = query(
+    leaderboardRef,
+    orderBy('kpm', 'desc'),
+    limit(10)
+  );
 
-nama:nama,
-kpm:kpm
+  onSnapshot(q, (snapshot) => {
+    box.innerHTML = '';
 
-});
+    if (snapshot.empty) {
+      box.innerHTML = '<p>Belum ada pemain</p>';
+      return;
+    }
 
+    snapshot.forEach((docSnap, index) => {
+      const pemain = docSnap.data();
 
-dataScore.sort(
-(a,b)=>b.kpm-a.kpm
-);
-
-
-dataScore=dataScore.slice(0,10);
-
-
-
-Firebase Firestore.setItem(
-"score",
-JSON.stringify(dataScore)
-);
-
-
-tampilLeaderboard();
-
-
+      box.innerHTML += `
+        <div>
+          <b>${index + 1}. ${pemain.nama}</b>
+          <br>
+          ⚡ ${pemain.kpm} KPM
+        </div>
+        <hr>
+      `;
+    });
+  });
 }
 
+// Simpan rekor terbaik pemain
+export async function simpanScore(nama, kpm) {
+  const namaBersih = nama.trim();
 
+  if (!namaBersih) {
+    alert('Nama tidak boleh kosong');
+    return false;
+  }
 
-function tampilLeaderboard(){
+  const docRef = doc(db, 'leaderboard', namaBersih);
+  const docSnap = await getDoc(docRef);
 
+  if (docSnap.exists()) {
+    const dataLama = docSnap.data();
 
-let box=document.getElementById("leaderboard");
+    if (kpm > dataLama.kpm) {
+      await setDoc(docRef, {
+        nama: namaBersih,
+        kpm: kpm,
+        level: document.getElementById('level').value,
+        updatedAt: new Date()
+      });
 
+      return true;
+    }
 
-box.innerHTML="";
+    return false;
+  }
 
+  await setDoc(docRef, {
+    nama: namaBersih,
+    kpm: kpm,
+    level: document.getElementById('level').value,
+    createdAt: new Date()
+  });
 
-dataScore.forEach((pemain,index)=>{
-
-
-box.innerHTML+=`
-
-<div>
-
-<b>${index+1}. ${pemain.nama}</b>
-
-<br>
-
-⚡ ${pemain.kpm} KPM
-
-</div>
-
-<hr>
-
-`;
-
-});
-
-
+  return true;
 }
 
-
+// Jalankan leaderboard saat halaman dibuka
 tampilLeaderboard();
