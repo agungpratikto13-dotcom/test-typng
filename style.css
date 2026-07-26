@@ -533,6 +533,97 @@ body{
 
 @keyframes shine{
 
+    /* ========================= */
+/* FINAL RANK STYLE */
+
+#leaderboard .rank1{
+
+    background:linear-gradient(145deg,#FFD700,#FF9800) !important;
+
+    color:#222 !important;
+
+    padding:18px !important;
+
+    border-radius:18px;
+
+    font-size:22px;
+
+    font-weight:800;
+
+    margin-bottom:15px;
+
+    box-shadow:
+    0 0 25px rgba(255,215,0,.8),
+    inset 0 3px 10px rgba(255,255,255,.8);
+
+    transform:scale(1.05);
+
+    animation:goldPulse 2s infinite;
+
+}
+
+
+#leaderboard .rank2{
+
+    background:linear-gradient(145deg,#eeeeee,#9ca3af) !important;
+
+    color:#222 !important;
+
+    padding:16px !important;
+
+    border-radius:15px;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    margin-bottom:12px;
+
+    box-shadow:
+    0 0 20px rgba(220,220,220,.6);
+
+}
+
+
+#leaderboard .rank3{
+
+    background:linear-gradient(145deg,#cd7f32,#8b4513) !important;
+
+    color:white !important;
+
+    padding:16px !important;
+
+    border-radius:15px;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    margin-bottom:12px;
+
+    box-shadow:
+    0 0 20px rgba(205,127,50,.6);
+
+}
+
+
+/* animasi emas */
+
+@keyframes goldPulse{
+
+    0%{
+        box-shadow:0 0 15px gold;
+    }
+
+    50%{
+        box-shadow:0 0 35px gold;
+    }
+
+    100%{
+        box-shadow:0 0 15px gold;
+    }
+
+}
     0%{
 
         left:-50%;
