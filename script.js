@@ -2,6 +2,8 @@ import { simpanScore } from './leaderboard.js';
 
 let kataAktif = [];
 
+let statusKata = [];
+
 let indexKata = 0;
 
 let aktif = false;
@@ -31,22 +33,19 @@ function buatKata(){
 
 kataAktif=[];
 
+statusKata=[];
 
 for(let i=0;i<20;i++){
 
-let acak=Math.floor(
-Math.random()*databaseTyping.length
-);
+    let acak=Math.floor(Math.random()*databaseTyping.length);
 
-
-kataAktif.push(databaseTyping[acak]);
-
+    kataAktif.push(databaseTyping[acak]);
 
 }
 
+statusKata = new Array(kataAktif.length).fill(null);
 
 indexKata=0;
-
 
 tampilkanKata();
 
@@ -179,32 +178,52 @@ selesai();
 
 input.addEventListener("input", () => {
 
-    let ketik = input.value.trim();
     let target = kataAktif[indexKata];
+    let ketik = input.value;
 
-    jumlahKarakter++;
+    cekWarna(ketik.trim());
 
-    cekWarna(ketik);
+    // Jika pengguna menekan spasi
+    if (ketik.endsWith(" ")) {
 
-    if (ketik === target) {
+        let kata = ketik.trim();
 
-        jumlahBenar++;
-        document.getElementById("benar").innerHTML = jumlahBenar;
+        jumlahKarakter += kata.length;
+
+       if (kata === target) {
+
+    jumlahBenar++;
+
+    statusKata[indexKata] = true;
+
+    document.getElementById("benar").innerHTML = jumlahBenar;
+
+}
+
+     else {
+
+    jumlahSalah++;
+
+    statusKata[indexKata] = false;
+
+    document.getElementById("salah").innerHTML = jumlahSalah;
+
+}
 
         indexKata++;
+
         input.value = "";
 
         if (indexKata >= kataAktif.length) {
+
             buatKata();
+
         } else {
+
             tampilkanKata();
             cekWarna("");
+
         }
-
-    } else if (ketik.length >= target.length) {
-
-        jumlahSalah++;
-        document.getElementById("salah").innerHTML = jumlahSalah;
 
     }
 
@@ -217,14 +236,21 @@ function cekWarna(ketik){
 
     semua.forEach((el,i)=>{
 
-        el.classList.remove("benar","salah","aktif");
+        el.classList.remove("aktif","benar","salah");
 
-        if(i<indexKata){
+        if(statusKata[i]===true){
 
             el.classList.add("benar");
 
         }
-        else if(i===indexKata){
+
+        if(statusKata[i]===false){
+
+            el.classList.add("salah");
+
+        }
+
+        if(i===indexKata){
 
             el.classList.add("aktif");
 
@@ -232,11 +258,11 @@ function cekWarna(ketik){
 
                 if(kataAktif[i].startsWith(ketik)){
 
-                    el.classList.add("benar");
+                    el.style.opacity="1";
 
                 }else{
 
-                    el.classList.add("salah");
+                    el.style.opacity=".8";
 
                 }
 
